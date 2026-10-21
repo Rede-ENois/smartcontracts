@@ -1,7 +1,7 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Rede%20%C3%89%20N%C3%B3is%20Blockchain&fontSize=36&fontAlignY=35&animation=twinkling)
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Rede-ENois.smartcontracts.smartcontracts_readme)
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-blue.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 ![Language: Portuguese](https://img.shields.io/badge/Language-Portuguese-brightgreen.svg)
 ![Status](https://img.shields.io/badge/Status-Ongoing-yellow)
 [![GitHub Issues](https://img.shields.io/github/issues/Rede-ENois/smartcontracts)](https://github.com/Rede-ENois/smartcontracts/issues)
@@ -296,9 +296,9 @@ As referências orientam o desenho técnico; não representam parceria comercial
 
 ## 11. Licenciamento
 
-O arquivo [LICENSE](LICENSE) presente no repositório contém a **GNU General Public License, versão 3 (GPLv3)**.
+O projeto, incluindo seu código e sua documentação, adota a **GNU General Public License, versão 3 (GPLv3)**, conforme o arquivo [LICENSE](LICENSE), fonte de referência para os termos completos de licenciamento.
 
-O badge **CC BY-SA 4.0** no cabeçalho foi incluído conforme a convenção visual local de documentação, mas diverge da licença atualmente registrada. Ele **não substitui o arquivo LICENSE nem estabelece, por si só, uma licença separada para este README**. A equipe mantenedora deverá confirmar a política de licenciamento de código e documentação e harmonizar essa indicação antes de uma publicação oficial. Nenhuma licença foi alterada nesta etapa.
+Os badges, exemplos e identificadores de licença nas regras do projeto deverão permanecer alinhados a esse arquivo. Para os arquivos Solidity do projeto, o identificador SPDX adotado é `GPL-3.0-only`. Dependências de terceiros permanecem sujeitas às respectivas licenças.
 
 ---
 
