@@ -145,7 +145,9 @@ Parte do capital recebido por doações poderá ser aplicada em estratégias apr
 
 A infraestrutura prevê integração com **vaults ERC-4626** e outros formatos por meio de adapters. Um adapter deverá compatibilizar depósitos, posições, retiradas e informações de risco com a infraestrutura É Nóis, sem presumir que todos os protocolos têm as mesmas garantias.
 
-Entre as integrações citadas na visão inicial estão **Aave, Morpho e uma plataforma referida como “stoksx”**, cuja identificação e adequação ainda precisam ser confirmadas. Nenhuma integração está implementada ou aprovada. Aave e Morpho não devem ser tratados genericamente como se toda posição fosse um vault ERC-4626; a compatibilidade dependerá do produto escolhido.
+Entre as opções de investimento a avaliar estão **Aave, Morpho, xStoks, Ondo, Dinari (dShares) e Securitize**. Nenhuma integração está implementada ou aprovada. A identificação dos produtos, sua disponibilidade e sua adequação à tesouraria deverão ser confirmadas antes de qualquer integração, incluindo requisitos de elegibilidade, identificação, restrições jurisdicionais, transferência e resgate.
+
+Essas opções não devem ser tratadas genericamente como vaults ERC-4626 nem como produtos equivalentes entre si. Cada integração dependerá do produto escolhido e poderá exigir um adapter específico, além de avaliação dos riscos de protocolo, emissor, custódia, contraparte e liquidez, conforme aplicável.
 
 Critérios propostos para cada estratégia:
 
