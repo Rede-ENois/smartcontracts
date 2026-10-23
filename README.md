@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Rede%20%C3%89%20N%C3%B3is%20Blockchain&fontSize=36&fontAlignY=35&animation=twinkling)
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=200&section=header&text=Ecossistema%20DeFi%20da%20Rede%20%C3%89%20N%C3%B3is&fontSize=36&fontAlignY=35&animation=twinkling)
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=Rede-ENois.smartcontracts.smartcontracts_readme)
 [![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
@@ -6,11 +6,9 @@
 ![Status](https://img.shields.io/badge/Status-Ongoing-yellow)
 [![GitHub Issues](https://img.shields.io/github/issues/Rede-ENois/smartcontracts)](https://github.com/Rede-ENois/smartcontracts/issues)
 
-# Smart Contracts — Blockchain da Rede É Nóis
-
 **Participação que gera reconhecimento. Tecnologia a serviço da comunidade.**
 
-Este repositório integra o **projeto Blockchain da Rede É Nóis** e será responsável pela infraestrutura de contratos inteligentes de seu ecossistema de **gamificação e finanças descentralizadas (DeFi)**. A proposta é reconhecer a participação na rede, incentivar contribuições e organizar a gestão transparente dos recursos comunitários.
+Este repositório é a base de contratos inteligentes do **Ecossistema DeFi da Rede É Nóis**, projeto que combina **gamificação e finanças descentralizadas (DeFi)**. A proposta é reconhecer a participação na rede, incentivar contribuições e organizar a gestão transparente dos recursos comunitários.
 
 O ecossistema terá como elementos centrais a moeda **Faísca**, os NFTs de reconhecimento e colecionáveis, um swap próprio e uma **Tesouraria** responsável pelos recebimentos, investimentos e saques, com governança por múltiplas assinaturas.
 
@@ -235,18 +233,76 @@ Os NFTs poderão aparecer no perfil do membro na Rede É Nóis e em carteiras co
 
 ## 7. Visão dos módulos
 
-```text
-Membros, doadores e compradores
-    ├── Dashboard / serviços de participação ──> Premiações e NFTs
-    └── On-ramp ──> USDC ──> Swap Faísca/USDC
+```mermaid
+flowchart TB
+    subgraph Atores["Atores"]
+        M["Membros"]
+        D["Doadores"]
+        C["Compradores"]
+        ADM["Administração"]
+        SIG["Signatários M-de-N"]
+    end
 
-Governança multisig M-de-N ──> Timelock ──> Tesouraria
-    ├── Políticas e permissões de mint/burn de Faísca
-    ├── Caixa operacional e recebimentos
-    ├── Reserva segregada do swap
-    ├── Políticas administrativas de NFTs
-    └── Capital autorizado para investimento
-            └── Adapters permitidos ──> ERC-4626 / outros protocolos
+    subgraph OffChain["Off-chain É Nóis"]
+        FE["Dashboard / Frontend"]
+        VAL["Serviço de comprovação<br/>de participação (EIP-712)"]
+        RAMP["On-ramp<br/>Circle / provedor BRLA"]
+    end
+
+    subgraph Gov["Governança on-chain"]
+        MS["Multisig M-de-N<br/>M = teto(2N/3)"]
+        TL["Timelock ≥ 48h"]
+        PZ["Pausa emergencial<br/>(escopo restrito)"]
+    end
+
+    subgraph Arc["Constelação de contratos — Rede Arc (EVM, gas em USDC)"]
+        direction TB
+        REG["ContractRegistry"]
+        PRE["RewardsDistributor<br/>premiações e NFTs"]
+        FAI["FaiscaToken<br/>ERC-20"]
+        NFT["EnoisNFT<br/>ERC-1155 / ERC-721"]
+        SWP["EnoisSwap<br/>AMM x·y=k — Faísca ⇄ USDC"]
+        TRS["Treasury<br/>caixa + reserva swap + capital"]
+
+        subgraph Adapters["Adapters — allowlist da governança"]
+            INV["IInvestmentAdapter<br/>depósito · saque · valoração"]
+            PRD["IProductAdapter<br/>cobrança · liquidação"]
+        end
+    end
+
+    subgraph Ext["Ativos e protocolos externos"]
+        USDC["USDC"]
+        BRLA["BRLA"]
+        V4626["Vaults ERC-4626"]
+        LEND["Aave / Morpho"]
+        RWA["Ondo · Securitize · outros"]
+        SITE["Produtos e serviços<br/>vendidos no site"]
+    end
+
+    M & D & C & ADM --> FE
+    RAMP --> FE
+    FE -->|descobre endereços| REG
+    FE -->|usa módulos| Arc
+    VAL -->|autorização EIP-712| PRE
+
+    SIG --> MS --> TL
+    TL -->|operações aprovadas| TRS
+    TL -.->|políticas e upgrades| Arc
+    PZ -.->|pausa seletiva| Arc
+
+    D -->|doação USDC/BRLA| TRS
+    PRE -->|mint autorizado| FAI
+    PRE -->|mint de edições| NFT
+    TRS -->|financia reserva| SWP
+    TRS -->|orçamento de emissão| FAI
+    TRS -->|políticas administrativas| NFT
+    TRS --> INV & PRD
+
+    SWP <--> FAI
+    SWP <--> USDC
+    INV --> V4626 & LEND & RWA
+    PRD --> SITE
+    TRS -.->|custódia| USDC & BRLA
 ```
 
 O diagrama representa responsabilidades e fluxos planejados, não contratos já implantados. O frontend administrará a experiência; contratos e serviços de validação aplicarão as regras. A tesouraria não deverá movimentar carteiras pessoais sem autorização do detentor.
