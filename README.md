@@ -16,6 +16,7 @@ O ecossistema terá como elementos centrais a moeda **Faísca**, os NFTs de reco
 
 ## 1. Objetivos
 
+- Migrar a Faísca simbólica já existente na Web 2 para a criptomoeda Faísca, na razão 1:1 por membro elegível.
 - Premiar membros por participação e contribuições à Rede É Nóis.
 - Reconhecer doadores com gratificações em Faísca, conforme políticas públicas da rede.
 - Permitir a aquisição e troca de Faísca por meio de um swap próprio com USDC.
@@ -27,6 +28,15 @@ O ecossistema terá como elementos centrais a moeda **Faísca**, os NFTs de reco
 ## 2. Moeda Faísca
 
 A **Faísca** será o token fungível de utilidade do ecossistema, com implementação prevista baseada no padrão **ERC-20**. Símbolo, casas decimais e rede de implantação ainda serão definidos.
+
+### Origem Web 2 e migração 1:1
+
+A Faísca **já existe hoje como moeda simbólica na plataforma Web 2** da Rede É Nóis: membros acumulam saldos de Faísca por participação, sem lastro em blockchain. A criptomoeda Faísca nasce, portanto, com uma **base de usuários e saldos pré-existentes** — e não do zero.
+
+- **Migração 1:1:** cada saldo de Faísca Web 2 elegível poderá ser convertido em Faísca on-chain na razão **1 para 1**, por meio de um fluxo de claim auditável (autorização assinada pelo serviço de comprovação, anti-duplicidade e janela de migração definida por governança).
+- **Escala esperada:** a estimativa de trabalho é de uma média de **~250 Faíscas por membro** — o desenho de distribuição inicial deve comportar essa ordem de grandeza por usuário.
+- **Valor de referência:** sugere-se um valor de referência interno de **R$ 0,01 por Faísca**. Trata-se de uma referência econômica para políticas de premiação e precificação, **não** de uma paridade garantida: o preço de mercado será formado no swap e poderá divergir da referência.
+- **Contabilidade da migração:** a emissão destinada à migração entra no orçamento de emissão auditável; saldos migrados não criam USDC nem lastro, e a janela de migração deve poder ser encerrada pela governança.
 
 ### Como obter Faísca
 
@@ -56,7 +66,7 @@ A Faísca não será apresentada como stablecoin, participação societária, di
 
 ### Jornada planejada
 
-1. A pessoa conecta uma carteira compatível à plataforma.
+1. A pessoa acessa a plataforma com sua **Smart Account custodiada** (ver abaixo) ou conecta uma carteira própria compatível.
 2. Adquire USDC usando um fluxo de **on-ramp integrado ao ecossistema Circle**, sujeito à disponibilidade comercial e regional.
 3. Recebe USDC na rede blockchain suportada pelo projeto.
 4. Consulta a cotação do swap, as taxas, o impacto no preço e o valor mínimo a receber.
@@ -66,6 +76,15 @@ A Faísca não será apresentada como stablecoin, participação societária, di
 O caminho inverso permitirá trocar Faísca por USDC **somente conforme a liquidez disponível**. Conversão posterior de USDC em moeda fiduciária dependerá de um serviço de off-ramp separado, não garantido por este projeto.
 
 **Integração Circle a confirmar:** a documentação distingue o Circle Mint, voltado a instituições elegíveis, dos fluxos com provedores de on-ramp. A integração final deverá confirmar produto ou parceiro, países atendidos, redes, métodos de pagamento, custos e requisitos de identificação e conformidade. Não se presume acesso direto de qualquer pessoa ao Circle Mint.
+
+### Carteiras Smart Account custodiadas (EIP-7702)
+
+Cada membro terá uma **Smart Account custodiada na plataforma**, criada junto ao perfil Web 2 — dispensando a fricção de instalar carteira ou guardar frase-semente para começar. Essa conta é a porta de entrada natural dos saldos migrados da Faísca Web 2 e das premiações.
+
+- **Chave exportável:** a qualquer momento o membro poderá **exportar a chave privada** da sua Smart Account e assumir a autocustódia, migrando para MetaMask ou outra carteira EVM sem perder saldos nem histórico on-chain.
+- **Modelo EIP-7702:** a arquitetura é orientada ao padrão **EIP-7702**, em que uma EOA delega a execução a código de smart account — combinando a portabilidade de uma EOA comum com recursos de conta inteligente (operações em lote, gas patrocinado pela plataforma, regras de sessão). A disponibilidade efetiva depende do suporte da rede Arc ao tipo de transação 0x04 e das carteiras compatíveis.
+- **Custódia é transição, não destino:** a plataforma custodia chaves para reduzir barreira de entrada, mas o desenho garante saída: exportação autenticada da chave, sem lock-in.
+- **Segurança:** chaves nunca aparecem em logs, repositório ou telas administrativas; a exportação exige autenticação forte do membro e é evento auditado; comprometimento da plataforma não pode resultar em transferências sem autorização do detentor.
 
 ### Proposta econômica: swap de reservas reais com produto constante
 
@@ -247,6 +266,7 @@ flowchart TB
         FE["Dashboard / Frontend"]
         VAL["Serviço de comprovação<br/>de participação (EIP-712)"]
         RAMP["On-ramp<br/>Circle / provedor BRLA"]
+        SA["Smart Accounts<br/>custodiadas (EIP-7702)"]
     end
 
     subgraph Gov["Governança on-chain"]
@@ -277,13 +297,16 @@ flowchart TB
         LEND["Aave / Morpho"]
         RWA["Ondo · Securitize · outros"]
         SITE["Produtos e serviços<br/>vendidos no site"]
+        LEG["Faísca Web2<br/>(legado simbólico)"]
     end
 
     M & D & C & ADM --> FE
     RAMP --> FE
+    FE --> SA
     FE -->|descobre endereços| REG
     FE -->|usa módulos| Arc
     VAL -->|autorização EIP-712| PRE
+    LEG -.->|migração 1:1| FAI
 
     SIG --> MS --> TL
     TL -->|operações aprovadas| TRS
@@ -314,13 +337,13 @@ flowchart TB
     classDef external fill:#CFD8DC,stroke:#455A64,stroke-width:1px,color:#212121;
 
     class M,D,C,ADM,SIG actor;
-    class FE,VAL,RAMP offchain;
+    class FE,VAL,RAMP,SA offchain;
     class MS,TL,PZ gov;
     class REG,PRE,NFT,SWP contract;
     class TRS treasury;
     class FAI token;
     class INV,PRD adapter;
-    class USDC,BRLA,V4626,LEND,RWA,SITE external;
+    class USDC,BRLA,V4626,LEND,RWA,SITE,LEG external;
 
     style Atores fill:#FFF8E1,stroke:#F9A825,stroke-width:2px,color:#212121;
     style OffChain fill:#E0F2F1,stroke:#00897B,stroke-width:2px,color:#212121;
