@@ -303,6 +303,31 @@ flowchart TB
     INV --> V4626 & LEND & RWA
     PRD --> SITE
     TRS -.->|custódia| USDC & BRLA
+
+    classDef actor fill:#FFE0B2,stroke:#E65100,stroke-width:1px,color:#212121;
+    classDef offchain fill:#B2DFDB,stroke:#00695C,stroke-width:1px,color:#212121;
+    classDef gov fill:#FFCCBC,stroke:#BF360C,stroke-width:1px,color:#212121;
+    classDef contract fill:#BBDEFB,stroke:#1565C0,stroke-width:1px,color:#212121;
+    classDef treasury fill:#64B5F6,stroke:#0D47A1,stroke-width:3px,color:#0D1B2A;
+    classDef token fill:#FFF59D,stroke:#F9A825,stroke-width:2px,color:#212121;
+    classDef adapter fill:#E1BEE7,stroke:#6A1B9A,stroke-width:1px,color:#212121;
+    classDef external fill:#CFD8DC,stroke:#455A64,stroke-width:1px,color:#212121;
+
+    class M,D,C,ADM,SIG actor;
+    class FE,VAL,RAMP offchain;
+    class MS,TL,PZ gov;
+    class REG,PRE,NFT,SWP contract;
+    class TRS treasury;
+    class FAI token;
+    class INV,PRD adapter;
+    class USDC,BRLA,V4626,LEND,RWA,SITE external;
+
+    style Atores fill:#FFF8E1,stroke:#F9A825,stroke-width:2px,color:#212121;
+    style OffChain fill:#E0F2F1,stroke:#00897B,stroke-width:2px,color:#212121;
+    style Gov fill:#FBE9E7,stroke:#E64A19,stroke-width:2px,color:#212121;
+    style Arc fill:#E3F2FD,stroke:#1E88E5,stroke-width:2px,color:#212121;
+    style Adapters fill:#F3E5F5,stroke:#8E24AA,stroke-width:2px,color:#212121;
+    style Ext fill:#ECEFF1,stroke:#607D8B,stroke-width:2px,color:#212121;
 ```
 
 O diagrama representa responsabilidades e fluxos planejados, não contratos já implantados. O frontend administrará a experiência; contratos e serviços de validação aplicarão as regras. A tesouraria não deverá movimentar carteiras pessoais sem autorização do detentor.
