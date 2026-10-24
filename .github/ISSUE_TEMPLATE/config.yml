@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Guia de Contribuição
+    url: https://github.com/Rede-ENois/smartcontracts/blob/main/CONTRIBUTING.md
+    about: Leia antes de abrir issues ou Pull Requests.
+  - name: Documentação do módulo
+    url: https://github.com/Rede-ENois/smartcontracts/blob/main/README.md
+    about: README com setup, scripts e troubleshooting.
+  - name: Documentação Uniswap v4
+    url: https://docs.uniswap.org/contracts/v4/overview
+    about: Referência oficial dos hooks e do PoolManager.
