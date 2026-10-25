@@ -54,6 +54,7 @@ não representam contratos já implementados.
 | [06 — Diagramas de Sequência](06-diagramas-sequencia.md) | Um capítulo por fluxo, com diagrama de sequência e descrição. |
 | [07 — Normas ERC](07-normas-erc.md) | Cada padrão ERC adotado, seu papel no sistema e cuidados de implementação. |
 | [08 — Levantamento Faísca Web 2](08-levantamento-web2-faisca.md) | Modelo contábil e inventário dos fluxos reais da Faísca na Web 2, com mapeamento para a Web 3. |
+| [09 — Howey e Valores Mobiliários](09-teste-howey-valores-mobiliarios.md) | Análise preliminar Brasil/EUA por operação, defesa condicionada, riscos, evidências e gate regulatório RF-REG; não substitui parecer jurídico. |
 
 ## Conversão para PDF
 
@@ -83,6 +84,7 @@ renderizados como imagens, usando os scripts da pasta
 
 | Data | Versão | Descrição |
 |---|---|---|
+| 2026-10-24 | 0.6.0 | Doc 09: análise Howey/CVM Brasil/EUA e defesa condicionada; requisitos RF-REG para revisão e aprovação. |
 | 2026-10-23 | 0.1.0 | Estrutura inicial da análise do sistema econômico. |
 | 2026-10-23 | 0.2.0 | Migração Faísca Web2 1:1 e Smart Accounts (EIP-7702) no escopo; diagramas coloridos pela paleta padrão. |
 | 2026-10-23 | 0.3.0 | Corredor fiat ⇄ tesouraria no escopo: novo módulo de requisitos RF-FIA, UC-18 e SD-13. |

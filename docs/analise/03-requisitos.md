@@ -315,10 +315,38 @@ não um flag contábil no token.
 - DAO com votação ponderada por token (governança atual é multisig; DAO futura é decisão separada).
 - Custódia permanente de chaves pela plataforma (a custódia é transitória; a chave da Smart Account é sempre exportável).
 
+## 17. Conformidade e caracterização regulatória (RF-REG)
+
+A designação utilitária é uma finalidade proposta, não conclusão jurídica.
+Aplicam-se avaliações separadas para Brasil e EUA conforme o
+[doc 09 — Howey e valores mobiliários](09-teste-howey-valores-mobiliarios.md).
+Estes requisitos são condições de aprovação ainda a implementar, não controles
+já disponíveis. Nenhum resultado jurídico é inferido apenas de um padrão ERC,
+multisig, ausência de garantia financeira ou uso de blockchain.
+
+| ID | Prioridade | Requisito |
+|---|---|---|
+| RF-REG-01 | M | Manter avaliação versionada por ativo, campanha, operação e jurisdição/público-alvo: no Brasil, categorias do art. 2º da Lei 6.385/1976 e seis elementos do CIC do Parecer CVM 40; nos EUA, categorias de security e Howey, distinguindo caracterização de registro/isenção e alcance territorial. Examinar oferta primária e negociação secundária sem presumir identidade entre elas. |
+| RF-REG-02 | M | Documentar contraprestação, origem, titularidade e destinação dos recursos, direitos dos participantes, fonte de benefícios e esforços de cada parte. Separar consumo, serviço, participação comprovada, gratificação, benefício por posse e investimento; segregação contábil não prova, sozinha, capital próprio nem ausência de direito econômico. |
+| RF-REG-03 | M | Revisar termos, metadados, campanhas e comunicações atribuíveis ao ofertante antes de divulgação, preservando versões e evidências. Proibir promessas enganosas de retorno, liquidez, recompra ou paridade; declarar riscos e verificar expectativas econômicas efetivamente criadas, sem tratar disclaimers como dispensa regulatória. |
+| RF-REG-04 | M | Submeter expressamente à avaliação de RF-REG-01/02/03: compra/venda em USDC e gestão de liquidez (RF-SWP), gratificações proporcionais a doações (RF-PRE-05), prêmios por posse de NFT (RF-NFT-09, RF-PRE-08), venda/aluguel e premiações GameFi (RF-GAM-06/07/09/12/13), migração (RF-MIG), escrow (RF-ESC) e tesouraria/adapters (RF-TRS/RF-FIA/RF-ADT). A ausência de promessa de rendimento em RF-FAI-08 e RF-NFT-09 não substitui essa avaliação. |
+| RF-REG-05 | M | Condicionar divulgação de ofertas e ativação de fluxos econômicos reais à revisão jurídica profissional aplicável e decisão de governança, identificando versão, público, condições e pendências. Ausência de avaliação ou pendência impeditiva mantém o fluxo não aprovado. Se houver enquadramento, exigir caminho regulatório aplicável antes da oferta; a aprovação interna não substitui registro, isenção ou autorização exigível. Este gate complementa RF-SWP-19 e não altera sua restrição fiat↔Faísca. |
+| RF-REG-06 | M | Reavaliar antes de ativar mudanças materiais em direitos, recompensas, splits, emissão, liquidez, upgrades, coleções/módulos, publicidade, públicos ou jurisdições, e diante de mudança normativa relevante. Preservar avaliações anteriores, sem reclassificação retroativa automática de transações. |
+| RF-REG-07 | M | Manter dossiê rastreável com requisitos, termos, matrizes Brasil/EUA, evidências, responsável jurídico, conclusão e decisão de governança. Publicar somente resumo apropriado: parecer sujeito a sigilo profissional, dados pessoais e segredos permanecem restritos. |
+| RF-REG-08 | M | Validar os casos de aceitação do doc 09 §6.1 por revisão documental registrada; quando houver implementação, adicionar testes positivos/negativos dos gates técnicos e controles afetados, ligados aos IDs. Não apresentar revisão documental como teste de contrato nem teste técnico como decisão jurídica automatizada. |
+
+**Aceitação:** cada fluxo terá fatos, argumentos favoráveis, contrapontos,
+lacunas, conclusão por jurisdição e estado de aprovação explícitos. Os casos
+adversos incluem NFT pago com prêmio passivo, doação como aquisição econômica,
+marketing de valorização, atuação meramente acessória do jogador e upgrade
+que mude incentivos. Funcionalidades continuam propostas: este módulo não as
+remove nem declara sua legalidade antecipadamente.
+
 ## Changelog
 
 | Data | Versão | Descrição |
 |---|---|---|
+| 2026-10-24 | 0.7.0 | RF-REG-01 a 08: caracterização Brasil/EUA, revisão de ofertas e incentivos, gate jurídico e critérios documentais vinculados ao doc 09. |
 | 2026-10-23 | 0.1.0 | Versão inicial dos requisitos. |
 | 2026-10-23 | 0.2.0 | Novos módulos RF-MIG (migração Faísca Web2 1:1) e RF-WAL (Smart Accounts custodiadas/EIP-7702); diagrama colorido. |
 | 2026-10-23 | 0.3.0 | RF-SWP-13 a 18: swap ancorado a oráculo de DEX (Uniswap v4 nesta fase) para acompanhar o preço de mercado e impedir arbitragem circular/drenagem de reservas. |

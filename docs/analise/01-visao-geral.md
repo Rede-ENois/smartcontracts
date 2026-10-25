@@ -307,9 +307,13 @@ Três propriedades organizam esses fluxos:
 - **Segregação patrimonial:** caixa operacional, reserva do swap e capital
   de investimento são contábeis e fisicamente separados. USDC da reserva do
   swap não é caixa livre nem colateral de estratégias.
-- **Ausência de promessas:** a Faísca não é stablecoin, não dá direito
-  automático à tesouraria nem a rendimentos. O swap não garante liquidez
-  permanente nem paridade.
+- **Ausência de promessas:** a proposta não confere à Faísca paridade,
+  direito automático à tesouraria nem a rendimentos. O swap não garante
+  liquidez permanente. Essa intenção não encerra o enquadramento jurídico:
+  campanhas, prêmios por posse, negociação e aluguel exigem avaliação da
+  realidade econômica por operação e jurisdição, conforme
+  [RF-REG](03-requisitos.md#17-conformidade-e-caracterização-regulatória-rf-reg)
+  e a [defesa condicionada Brasil/EUA](09-teste-howey-valores-mobiliarios.md).
 - **Transparência verificável:** toda mutação relevante emite eventos;
   endereços de contratos, multisig e timelock são públicos e verificáveis.
 
@@ -433,6 +437,7 @@ administrativo.
 
 | Data | Versão | Descrição |
 |---|---|---|
+| 2026-10-24 | 0.6.0 | Ressalva de caracterização por operação/jurisdição e referências a RF-REG e à análise Howey/CVM. |
 | 2026-10-23 | 0.1.0 | Versão inicial da visão geral. |
 | 2026-10-23 | 0.2.0 | Migração Faísca Web2 1:1 e Smart Accounts custodiadas (EIP-7702); diagramas coloridos. |
 | 2026-10-23 | 0.3.0 | Corredor fiat ⇄ tesouraria: movimentação bidirecional de capital próprio da administração (aportes para investimento em cripto e saques a fiat) via on/off-ramp aprovado. |

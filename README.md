@@ -60,7 +60,9 @@ As premiações deverão ser rastreáveis, com prevenção de duplicidade, abuso
 
 **Novas emissões não criam USDC nem lastro.** Premiações e gratificações podem ampliar a pressão de venda e reduzir o preço no swap. Recomenda-se orçamento de emissão por período, monitoramento da oferta e limites operacionais ajustáveis por governança, sem impor um teto total ao token.
 
-A Faísca não será apresentada como stablecoin, participação societária, direito automático sobre a tesouraria ou promessa de rendimento. Sua utilização, distribuição e negociação dependerão também de avaliação jurídica aplicável.
+A Faísca não será apresentada como stablecoin, participação societária, direito automático sobre a tesouraria ou promessa de rendimento. A finalidade utilitária proposta não determina, por si, o enquadramento jurídico. Sua utilização, distribuição e negociação dependerão de avaliação por operação, oferta e jurisdição, conforme [RF-REG](docs/analise/03-requisitos.md#17-conformidade-e-caracterização-regulatória-rf-reg) e a [análise Howey/CVM para Brasil e EUA](docs/analise/09-teste-howey-valores-mobiliarios.md).
+
+A defesa da proposta é condicionada às evidências de consumo, participação e direitos efetivos. Compra em USDC, doações gratificadas, prêmios por posse de NFT, aluguel/GameFi e investimentos da tesouraria exigem exame específico. Ofertas e fluxos econômicos reais não serão liberados apenas por disclaimer ou aprovação interna: dependerão de revisão jurídica profissional, decisão de governança e atendimento ao caminho regulatório aplicável, quando exigível.
 
 ## 3. Compra com USDC e swap da Rede É Nóis
 
